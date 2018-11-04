@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>keycloaksync</id>
+    <name>Keycloak Sync</name>
+    <summary>Synchronizes User data from keycloak to nextcloud</summary>
+    <description><![CDATA[Used to integrate keycloak into nextcloud]]></description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author mail="mario99.kunz@gmail.com" >Mario Kunz</author>
+    <namespace>KeycloakSync</namespace>
+    <category>integration</category>
+    <bugs>https://github.com/M4R1KU/nextcloud-keycloak-sync/issues</bugs>
+    <dependencies>
+        <nextcloud min-version="14" max-version="14"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>Keycloak Sync</name>
+            <route>keycloaksync.page.index</route>
+        </navigation>
+    </navigations>
+</info>

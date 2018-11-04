@@ -1,0 +1,15 @@
+{
+    "name": "keycloak/sync",
+    "description": "Synchronizes User data from keycloak to nextcloud",
+    "type": "project",
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Mario Kunz"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    }
+}
