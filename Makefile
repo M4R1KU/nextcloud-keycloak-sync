@@ -137,20 +137,7 @@ appstore:
 	--exclude="./*.log" \
 	--exclude="./phpunit*xml" \
 	--exclude="./composer.*" \
-	--exclude="./js/node_modules" \
-	--exclude="./js/tests" \
-	--exclude="./js/test" \
-	--exclude="./js/*.log" \
-	--exclude="./js/package.json" \
-	--exclude="./js/bower.json" \
-	--exclude="./js/karma.*" \
-	--exclude="./js/protractor.*" \
-	--exclude="./package.json" \
-	--exclude="./bower.json" \
-	--exclude="./karma.*" \
-	--exclude="./protractor\.*" \
 	--exclude="./.*" \
-	--exclude="./js/.*" \
 
 .PHONY: test
 test: composer
