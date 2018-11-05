@@ -41,6 +41,7 @@
 
 app_name=$(notdir $(CURDIR))
 build_tools_directory=$(CURDIR)/build/tools
+build_source_directory=$(CURDIR)/build/source
 source_build_directory=$(CURDIR)/build/artifacts/source
 source_package_name=$(source_build_directory)/$(app_name)
 appstore_build_directory=$(CURDIR)/build/artifacts/appstore
@@ -127,17 +128,22 @@ source:
 .PHONY: appstore
 appstore:
 	rm -rf $(appstore_build_directory)
+	rm -rf $(build_source_directory)
 	mkdir -p $(appstore_build_directory)
-	tar cvzf $(appstore_package_name).tar.gz ./ \
-	--exclude-vcs \
-	--exclude="./build" \
-	--exclude="./build/artifacts/appstore/*.tar.gz" \
-	--exclude="./tests" \
-	--exclude="./Makefile" \
-	--exclude="./*.log" \
-	--exclude="./phpunit*xml" \
-	--exclude="./composer.*" \
-	--exclude="./.*" \
+	mkdir -p $(build_source_directory)
+	rsync -a \
+    	--exclude="*.log" \
+    	--exclude=".*" \
+    	--exclude="composer.*" \
+    	--exclude="Makefile" \
+    	--exclude="phpunit*xml" \
+    	--exclude="protractor.*" \
+    	--exclude="build" \
+    	--exclude="tests" \
+    	--exclude="vendor" \
+    	--exclude="Jenkinsfile" \
+    	./ $(build_source_directory)/$(app_name)
+	tar cvzf $(appstore_package_name).tar.gz --directory="$(build_source_directory)" $(app_name)
 
 .PHONY: test
 test: composer
