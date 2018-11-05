@@ -18,7 +18,7 @@ pipeline {
 
             post {
                 success {
-                    archiveArtifacts 'build/artifacts/*.tar.gz'
+                    archiveArtifacts 'build/artifacts/appstore/*.tar.gz'
                 }
             }
         }
