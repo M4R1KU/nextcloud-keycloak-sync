@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'php:7.2'
+            image 'composer:1.7'
         }
     }
 
@@ -14,6 +14,12 @@ pipeline {
         stage('Package') {
             steps {
                 sh 'make appstore'
+            }
+
+            post {
+                success {
+                    archiveArtifacts 'build/artifacts/*.tar.gz'
+                }
             }
         }
     }
