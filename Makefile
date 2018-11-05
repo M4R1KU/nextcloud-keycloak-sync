@@ -39,7 +39,7 @@
 #        "build": "node node_modules/gulp-cli/bin/gulp.js"
 #    },
 
-app_name=nextcloud_keycloak_sync
+app_name=keycloaksync
 build_tools_directory=$(CURDIR)/build/tools
 build_source_directory=$(CURDIR)/build/source
 source_build_directory=$(CURDIR)/build/artifacts/source
