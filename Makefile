@@ -148,8 +148,8 @@ appstore:
 
 	@if [ -f $(CERT) ]; then \
 		echo "Signing package..."; \
-		rm -rf $(appstore_signature_directory) \
-		mkdir -p $(appstore_signature_directory) \
+		rm -rf $(appstore_signature_directory); \
+		mkdir -p $(appstore_signature_directory); \
 		openssl dgst -sha512 -sign $(CERT) $(appstore_build_directory)/$(app_name).tar.gz | openssl base64 > $(appstore_signature_directory)/$(app_name).txt; \
 	fi
 
