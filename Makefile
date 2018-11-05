@@ -46,7 +46,7 @@ source_build_directory=$(CURDIR)/build/artifacts/source
 source_package_name=$(source_build_directory)/$(app_name)
 appstore_build_directory=$(CURDIR)/build/artifacts/appstore
 appstore_package_name=$(appstore_build_directory)/$(app_name)
-npm=$(shell which npm 2> /dev/null)
+appstore_signature_directory=$(CURDIR)/build/artifacts/signature
 composer=$(shell which composer 2> /dev/null)
 
 all: build
@@ -144,6 +144,11 @@ appstore:
     	--exclude="Jenkinsfile" \
     	./ $(build_source_directory)/$(app_name)
 	tar cvzf $(appstore_package_name).tar.gz --directory="$(build_source_directory)" $(app_name)
+
+	@if [ -f $(CERT) ]; then \
+		echo "Signing package..."; \
+		openssl dgst -sha512 -sign $(CERT) $(appstore_build_directory)/$(app_name).tar.gz | openssl base64 > $(appstore_signature_directory)/$(app_name).txt; \
+	fi
 
 .PHONY: test
 test: composer
