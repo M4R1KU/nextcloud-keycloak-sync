@@ -22,7 +22,7 @@ pipeline {
             post {
                 success {
                     archiveArtifacts 'build/artifacts/appstore/*.tar.gz'
-                    archiveArtifacts 'build/artifacts/sign/*'
+                    archiveArtifacts 'build/artifacts/signature/*'
                 }
             }
         }
