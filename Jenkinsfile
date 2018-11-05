@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'composer:1.7'
+            image 'm4r1ku/nextcloud-build-container:latest'
         }
     }
 
