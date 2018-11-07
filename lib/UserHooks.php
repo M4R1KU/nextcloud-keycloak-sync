@@ -2,7 +2,7 @@
 
 namespace OCA\KeycloakSync;
 
-use OCP\Session;
+use \OC\User\Session;
 
 class UserHooks {
 
@@ -15,8 +15,9 @@ class UserHooks {
     }
 
     public function register() {
-        $this->session->listen('\OC\User', 'postLogin', function ($user) {
+        $callback = function ($user, $password) {
             $this->loginHandler->synchronizeUser($user);
-        });
+        };
+        $this->session->listen('\OC\User', 'postLogin', $callback);
     }
 }

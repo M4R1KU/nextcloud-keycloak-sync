@@ -14,10 +14,4 @@
     <dependencies>
         <nextcloud min-version="14" max-version="14"/>
     </dependencies>
-    <navigations>
-        <navigation>
-            <name>Keycloak Sync</name>
-            <route>keycloaksync.page.index</route>
-        </navigation>
-    </navigations>
 </info>

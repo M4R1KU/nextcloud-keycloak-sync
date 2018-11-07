@@ -1,7 +1,7 @@
 <?php
 namespace OCA\KeycloakSync;
 
-use OCP\ILogger;
+use \OCP\ILogger;
 
 class LoginHandler {
 
@@ -12,6 +12,6 @@ class LoginHandler {
     }
 
     public function synchronizeUser($user) {
-        $this->logger->info($user);
+        $this->logger->error($user->getDisplayName(), array('app' => 'keycloaksync'));
     }
 }
