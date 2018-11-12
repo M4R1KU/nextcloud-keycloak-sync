@@ -31,6 +31,7 @@ class LoginHandler {
         $this->logger->info('Synchronizing user "' . $user->getDisplayName(), array('app' => $this->appName));
 
         $token = $this->getToken();
+        $this->logger->debug('Token "' . $this->arrayToString($token), array('app' => $this->appName));
 
         // read audience from token
         $clientId = $token['aud'];
@@ -48,10 +49,10 @@ class LoginHandler {
         }
 
         $userGroups = $this->groupManager->getUserGroupIds($userEntity);
-        $this->logger->debug('Current User groups: [' . implode(', ', $userGroups) . ']', array('app' => $this->appName));
+        $this->logger->debug('Current User groups: ' . $this->arrayToString($userGroups), array('app' => $this->appName));
 
         foreach ($roles as $role) {
-            if (($key = array_search($role, $userGroups))) {
+            if (($key = array_search($role, $userGroups)) !== false) {
                 $this->logger->debug('Group "' . $role . '" associated with user => skipping', array('app' => $this->appName));
                 unset($userGroups[$key]);
                 continue;
@@ -66,7 +67,7 @@ class LoginHandler {
         }
 
         if (count($userGroups) > 0) {
-            $this->logger->debug('Removed groups [' . implode(', ', $userGroups) . '] from user', array('app' => $this->appName));
+            $this->logger->debug('Removed groups ' . $this->arrayToString($userGroups) . '  from user', array('app' => $this->appName));
             foreach ($userGroups as $group) {
                 $this->groupManager->get($group)->removeUser($user);
             }
@@ -94,5 +95,9 @@ class LoginHandler {
 
     private function getProviderShortName() {
         return (new \ReflectionClass('\OCA\SocialLogin\Provider\CustomOpenIDConnect'))->getShortName();
+    }
+
+    private function arrayToString(array $array) {
+        return '[' . implode(', ', $array) . ']';
     }
 }
