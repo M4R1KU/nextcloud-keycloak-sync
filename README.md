@@ -1,5 +1,13 @@
 # Keycloak Sync
-Place this app in **nextcloud/apps/**
+Synchronizes client roles from keycloak access token to nextcloud.
+
+Depends heavily on [Social Login](https://apps.nextcloud.com/apps/sociallogin) and needs it to be installed.
+Expects a CustomOpenIDConnect configuration to be present.
+
+Roles are read from the `resource_access` key in the accesstoken which must be present in the session.
+Userroles are kept up to date at every login of the user.
+
+Place this app in **nextcloud/custom_apps/**
 
 ## Building the app
 

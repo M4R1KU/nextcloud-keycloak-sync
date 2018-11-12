@@ -146,12 +146,13 @@ appstore:
     	./ $(build_source_directory)/$(app_name)
 	tar cvzf $(appstore_package_name).tar.gz --directory="$(build_source_directory)" $(app_name)
 
-	@if [ -f $(CERT) ]; then \
-		echo "Signing package..."; \
-		rm -rf $(appstore_signature_directory); \
-		mkdir -p $(appstore_signature_directory); \
-		openssl dgst -sha512 -sign $(CERT) $(appstore_build_directory)/$(app_name).tar.gz | openssl base64 > $(appstore_signature_directory)/$(app_name).txt; \
-	fi
+#	Signing not necessary anymore
+#	@if [ -f $(CERT) ]; then \
+#		echo "Signing package..."; \
+#		rm -rf $(appstore_signature_directory); \
+#		mkdir -p $(appstore_signature_directory); \
+#		openssl dgst -sha512 -sign $(CERT) $(appstore_build_directory)/$(app_name).tar.gz | openssl base64 > $(appstore_signature_directory)/$(app_name).txt; \
+#	fi
 
 .PHONY: test
 test: composer
