@@ -5,7 +5,7 @@
     <name>Keycloak Sync</name>
     <summary>Synchronizes User data from keycloak to nextcloud</summary>
     <description><![CDATA[Used to integrate keycloak into nextcloud]]></description>
-    <version>0.0.1</version>
+    <version>1.0.1</version>
     <licence>agpl</licence>
     <author mail="mario99.kunz@gmail.com" >Mario Kunz</author>
     <namespace>KeycloakSync</namespace>
